@@ -1,0 +1,6 @@
+venv/
+.idea/
+templates/upload_image.html
+img_upload.py
+__pycache__
+sample_data/*.csv

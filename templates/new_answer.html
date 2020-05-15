@@ -1,0 +1,15 @@
+{%extends 'layout.html' %}
+{% block content %}
+
+    <form action="/question/{{question['id'] }}/new_answer" method="POST">
+
+        <label for="message">Question Answer</label><br>
+        <textarea name="message" id="message" rows="8" cols="55" required></textarea><br>
+      <button type="button">Add image</button>
+     <button type="submit">Submit</button>
+    </form>
+
+    <a href="/list"> <button type="submit">Go home</button> </a>
+
+
+{% endblock content %}

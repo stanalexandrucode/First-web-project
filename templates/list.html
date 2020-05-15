@@ -1,0 +1,52 @@
+{%extends 'layout.html' %}
+{% block content %}
+    <form action="/list"  method="GET">
+    <select name="sort">
+        <option value="submission_time">Submission Time</option>
+        <option value="title">Title</option>
+        <option value="vote_number">Vote Number</option>
+        <option value="message"> Message </option>
+        <option value="view_number">Views Number</option>
+    </select>
+        <select name="sort_direction">
+        <option value="DESC">Descending</option>
+        <option value="ASC">Ascending</option>
+    </select>
+     <button type="submit">Order</button>
+    </form>
+    <br>
+
+    <div class="search_field">
+        <form action="/search_result" method="POST">
+            <input type="search" , name="search_field" , placeholder="Type here..." , width="200px">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    {% for question in questions %}
+                 <div class="voteUp"><form action="/question/{{ question['id'] }}/vote_up" method="post">
+                    <button type="submit" name="up">+</button>
+                </form></div><br>
+                <div class="numberOfVotes">{{ question['vote_number'] }}</div><br>
+                <div class="voteDown"><form action="/question/{{ question['id'] }}/vote_down" method="post">
+                    <button type="submit" name="down">-</button>
+                </form></div>
+    <div class="questionContainer">
+        <br />
+        <a href="/question/{{question['id']}}"> Question with id: {{ question['id'] }} </a>
+        <p class="noViews">Views: {{ question['view_number'] }}</p>
+        <p class="info">{{ question['submission_time'] }} | Votes: {{ question['vote_number'] }}</p>
+        <a href="/question/{{question['id']}}">
+            <p class="questionTitle">{{ question['title'] }}</p>
+        </a>
+        <p class="questionMessage">{{ question['message'] }}</p><br>
+        <img src="{{ question['image'] }}" alt="" width="50px">
+        <div class="editButton"><a href="/edit/{{ question['id'] }}">Edit</a></div>
+        <div class="deleteButton"><a href="/delete/{{ question['id'] }}">Delete</a></div>
+        <div class="answerButton"><a href="/question">Answer</a></div>
+        <div class="viewButton"><a href="/question/{{ question['id'] }}">View answers</a></div>
+    </div>
+    {% endfor %}
+
+    <a class="addNewQuestion" href="/add"> Add new question </a>
+
+{% endblock content %}

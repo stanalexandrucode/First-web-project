@@ -1,0 +1,52 @@
+{%extends 'layout.html' %}
+{% block content %}
+
+    <a href="/" class="backButton">Go Back</a>
+
+    <table>
+        <tr>
+            <td> Vote Counter: {{ question['vote_number'] }}</td>
+            <td>Question Titlle:  {{ question['title'] }} </td>
+        </tr>
+        <tr><td> Question Message:  {{ question['message'] }} </td></tr>
+    </table>
+
+    <form action="/question/{{ question['id'] }}" method="POST">
+        <tr> <td> <a href="{{ question['id'] }}/new_answer"> Do you want to add an answer? </a></td> </tr> <br>
+
+    </form>
+    <table>
+    <tr>
+        <td> Vote Number</td>
+        <td> Answer </td>
+        <td> Submission Time</td>
+    </tr>
+
+    {% for i in answer %}
+        <tr>
+            <td>
+                <form action="/answer/{{ i['id'] }}/vote_up" method="post">
+                    <button type="submit" name="up">Vote up</button>
+                </form>
+                {{ i['vote_number'] }}
+                <form action="/answer/{{ i['id'] }}/vote_down" method="post">
+                    <button type="submit" name="down">Vote down</button>
+                </form>
+            </td>
+            <td>   {{ i['message'] }} </td>
+            <td> {{ i['submission_time'] }}</td>
+            <td><a class="deleteButton" href="/delete/{{ i['id'] }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+{% endblock content %}
+
+<style>
+
+    .back_button {
+        width: 100px;
+        background-color: #11557C
+    }
+
+</style>

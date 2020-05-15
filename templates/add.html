@@ -1,0 +1,14 @@
+
+{%extends 'layout.html' %}
+{% block content %}
+    <form action="/add" method="POST">
+        <label for="title" >Question title</label><br>
+        <input type="text" name="title" id="title" required><br>
+        <label for="message">Question details</label><br>
+        <textarea name="message" id="message" rows="8" cols="55" required></textarea><br>
+      <button type="button">Add image</button>
+     <button type="submit">Submit</button>
+    </form>
+
+    <a href="/list"> <button type="submit">Go home</button> </a>
+{% endblock content %}

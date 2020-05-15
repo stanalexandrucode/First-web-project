@@ -1,0 +1,19 @@
+{%extends 'layout.html' %}
+{% block content %}
+    <form action="{{ url_for('edit', question_id=question_id) }}" method="POST">
+        <input name="form_id" id="form_id" type="hidden" value="{{ question_content['id'] }}">
+        <input name="submission_time" id="submission_time" type="hidden" value="{{ question_content['submission_time'] }}">
+        <input name='view_number' id='view_number' type="hidden" value="{{ question_content['view_number'] }}">
+        <input name='vote_number' id='vote_number' type="hidden" value="{{ question_content['vote_number'] }}">
+        <input name='image' id='image' type="hidden" value="{{ question_content['image'] }}">
+        <label for="title" >Question title</label><br>
+        <textarea  name="title" id="title" required> {{ question_content['title'] }} </textarea><br>
+        <label for="message">Question details</label><br>
+        <textarea name="message" id="message" rows="8" cols="55" required> {{ question_content['message'] }}</textarea><br>
+        <hiden> {{question_content['id']}}</hiden>
+        <input type="submit" value="Submit">
+    </form>
+    <button type="button">Add image</button>
+    <a href="/list"></a>
+    <a href="/list"> <button type="submit">Go home</button> </a>
+{% endblock content %}
